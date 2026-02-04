@@ -1,0 +1,53 @@
+\documentclass[tikz]{standalone}
+\usepackage{../_style/tikz-customisation}
+
+\begin{document}
+\usetikzlibrary{scopes}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.shapes}
+\begin{tikzpicture}
+
+\ifstandalone
+%\iffalse
+  \tikzset{flowBlock/.append style={addNodeName}}
+  % draw background grid:
+  \foreach \x in { 0,  1, ..., 8} {\node at (\x, 1.5) {\x};}
+  \foreach \y in {-9, -8, ..., 1} {\node at (-0.5, \y) {\y};}
+  \draw[step=1.0, opacity=0.5] (0, -9) grid (8, 1);
+  \draw[step=0.2, opacity=0.1] (0, -9) grid (8, 1);
+\fi
+
+\node[flowTerminal, bold] (v1) at (2,0) {Input};
+\node[flowProcess] (v2) at (2,-4) {\parbox{3cm}{\begin{itemize}
+        \item \texttt{[step 0]}
+        \item \texttt{[step 1]}
+        \item \texttt{[step 2]}
+    \end{itemize}}};
+\node[flowData=60] (v3) at (6,0) {Older\\Data};
+\node[flowDecision=2] (v4) at (2,-7) {Converged?};
+\node[flowConnector] (v5) at (6,-1.5) {};
+\node[flowTerminal, bold] (v6) at (2,-9.5) {Done};
+
+\draw  (v1) edge (v2);
+\draw  (v5) edge[-|] ($(v2.north) + (1ex, 0)$);
+\draw  (v2) edge (v4);
+\draw  (v4) edge[-|] (v5);
+\draw  (v4) edge (v6);
+\draw  (v3) edge (v5);
+\draw  (v2) edge (v5 |- v2);
+
+\begin{pgfonlayer}{background}
+	\filldraw [line width=4mm,join=round,black!10]
+		(v1.north -| v2.east) rectangle (v2.south -| v2.west);
+      \node [shine, fit=(v3) (v5)] {};
+\end{pgfonlayer}
+
+\fill [fill=blue!20,draw=blue,thick, caution]
+%decorate[decoration={random steps,segment length=5mm,amplitude=1.5mm}] {
+	(v2.north -| v2.east)  rectangle (v4.south -| v2.west)
+	(v3.north west) -- (v3.south east)  (v3.south west) -- (v3.north east)
+%}
+;
+
+\end{tikzpicture}
+\end{document}

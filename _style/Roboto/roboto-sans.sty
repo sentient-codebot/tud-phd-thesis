@@ -1,0 +1,55 @@
+% two axes: Width (wdth), Weight (wght)
+% eighteen instances for upright and italics; nine for weight times two for width
+
+% clsguide.pdf \S 4.4
+\DeclareKeys[roboto] {
+  monospaced.if        = @roboto@monospaced,
+  oldstyle.if          = @roboto@oldstyle,
+  scale.store          = \@roboto@scale,
+  scale.initial:n      = 1,
+  weight.store         = \@roboto@weight,
+  weight.initial:n     = regular,
+  boldweight.store     = \@roboto@boldweight,
+  boldweight.initial:n = bold,
+  width.store          = \@roboto@width,
+  width.initial:n      = normal,
+}
+
+\ProcessKeyOptions[roboto]
+\RequirePackage{_style/Roboto/roboto-common}
+
+\defaultfontfeatures[Roboto] {
+  Ligatures          = TeX,
+  Path               = _style/Roboto/,
+  Extension          = .ttf,
+  UprightFont        = Roboto-VF,
+  BoldFont           = Roboto-VF,
+  ItalicFont         = Roboto-VF-Italic,
+  BoldItalicFont     = Roboto-VF-Italic,
+  Scale              = \@roboto@scale,
+  BoldFeatures       = {Instance=Bold},
+  BoldItalicFeatures = {Instance=Bold},
+  Numbers            = {
+    \if@roboto@monospaced Monospaced\else Proportional\fi,
+    \if@roboto@oldstyle OldStyle\else Lining\fi,
+  },
+}
+
+\newfontfamily{\roboto}[
+  UprightFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@roboto@weight},
+    width=\width@axis{\@roboto@width},
+  }}},
+  BoldFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@roboto@boldweight},
+    width=\width@axis{\@roboto@width},
+  }}},
+  ItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@roboto@weight},
+    width=\width@axis{\@roboto@width},
+  }}},
+  BoldItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@roboto@boldweight},
+    width=\width@axis{\@roboto@width},
+  }}},
+]{Roboto}

@@ -1,0 +1,100 @@
+% arara: lualatex: { shell: true }
+% arara: biber
+
+\documentclass[
+    usearial
+]{_style/dissertation}
+
+% fourier:
+% Use the serif font Utopia via the LaTeX package Fourier, as mentioned in the preface and section ``Document Structure''
+%
+% print:
+% By default the thesis has bleed with crop marks in the `BleedBox' of the pdf, some migth find this confusing.
+% this option enlarges the `MediaBox' so that the bleed and crop marks are shown by default in the pdf viewer.
+% Ask your printing company what they need.
+%
+% usearial:
+% use Arial as the sans-serif font, as per TUDelft corporate style.
+% the alternative is Roboto, which obviously goes together nicely with Roboto Slab.
+% differences are listed here: http://www.identifont.com/differences?first=Arial&second=Roboto
+% use https://www.ctan.org/pkg/fourier instead of Roboto for a more classic look.
+
+\RequirePackage[
+   backend=biber,
+   style=numeric-comp,
+   useprefix=true,
+   sorting=none,
+   sortcites=true,
+   maxbibnames=99,
+   giveninits=true,
+]{biblatex}
+
+\usepackage{import}
+\usepackage{_style/demo-features}
+
+% you can use this command to render one chapter only:
+% \includeonly{introduction/introduction}
+
+% words which latex does not know how to hyphenate can be listed here.
+% even though the words are German, they appear in an English-language environment (the bibliography)
+\sethyphenation{english}{ge-for-der-te sus-pen-dier-ten mä-an-der-ung}
+
+% https://www.silbentrennung24.de
+% https://www.hyphenator.net
+
+\addbibresource[glob]{*.bib}
+
+%% Specify the title and author of the thesis. This information will be used on
+%% the title page (in title/title.tex) and in the metadata of the final PDF.
+\title[Optional Subtitle]{Title}
+\author{Albert}{Einstein}
+
+% make own name bold in bibliographies
+\usepackage{_style/boldname}
+\boldname{Einstein}{Albert}{A.}
+
+
+\begin{document}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+\includefrom{-front_matter/}{title}
+
+%% The (optional) dedication can be used to thank someone or display a
+%% significant quotation.
+\dedication{\epigraph{Einstein's work is to make physics more philosophical (in a good sense).}{Hendrik Antoon Lorentz}}
+{
+    \hypersetup{hidelinks}
+    \tableofcontents
+}
+
+\includefrom{-front_matter/}{summary}
+\includefrom{-front_matter/}{preface}
+\includefrom{-front_matter/}{nomenclature}
+
+%% Use Arabic numerals for the page numbers of the chapters;
+% turn on edge indices for the printed version.
+\mainmatter
+
+\includefrom{introduction/}{introduction}
+\includefrom{conclusion/}{conclusion}
+
+% if you remove the references per chapter, the bibliography can be printed in one piece:
+% \printbibliography
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+\includefrom{-appendices/}{plotting}
+\includefrom{-appendices/}{qa}
+
+%% Turn off edge indices for unnumbered chapters.
+\backmatter
+\includefrom{-back_matter/}{epilogue}
+\includefrom{-back_matter/}{acknowledgements}
+\includefrom{-back_matter/}{cv}
+\includefrom{-back_matter/}{publications}
+
+\end{document}
+

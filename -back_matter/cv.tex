@@ -1,0 +1,38 @@
+\chapter{Curriculum Vit\ae}
+
+%% Print the full name of the author.
+\makeatletter
+\authors{\@firstnames\ {\titleshape\@lastname}}
+\makeatother
+
+\newcommand{\fakeSection}[1]{\\[\bigskipamount]
+{\normalfont\sectfont\usekomafont{section}#1}
+\\[\smallskipamount]}
+\begin{tabbing}
+    \hspace{1em}\=\hspace{8em}\=\\
+    \>14-03-1879\>Born in Ulm, Germany.% line break is part of following command
+    \fakeSection{Education}
+    \>1892--1896 \> Grammar School \\
+    \>\>Luitpold Gymnasium, M\"unchen (1892--1895)\\
+    \>\> Aurau, Switzerland (1895--1896) \\[\medskipamount]
+    \>1896--1900\> Undergraduate in Mathematics \& Physics \\
+    \>\> Eidgen\"ossische Polytechnische Schule Z\"urich \\[\medskipamount]
+    \>1905 \> PhD.\ Physics \\
+    \>\> Eidgen\"ossische Polytechnische Schule Z\"urich \\
+    \>\>
+    %% The width of the second column is the width of the page, minus the width
+    %% of the first column (4\parindent) minus four times the separation between
+    %% the start of the column and its contents.
+    \begin{minipage}{\textwidth-9em}
+        %% We divide the minipage 20/80.
+        \begin{tabular}{@{}p{0.2\linewidth}@{}p{0.8\linewidth-\tabcolsep}}
+            \textit{Thesis:} & Eine neue Bestimmung der Molek\"uldimensionen \\
+            \textit{Promotor:} & Prof.\ dr.\ A.\ Kleiner
+        \end{tabular}
+    \end{minipage}
+    \fakeSection{Awards}
+    \>1922\> Nobel Prize in Physics \\[\medskipamount]
+    \>1925\> Copley Medal \\[\medskipamount]
+    \>1929\> Max Planck Medal \\[\medskipamount]
+    \>1999\> Time magazine's person of the century
+\end{tabbing}

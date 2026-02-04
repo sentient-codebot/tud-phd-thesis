@@ -1,0 +1,35 @@
+% one axis: Weight (wght)
+% nine instances
+% no italics
+
+% clsguide.pdf \S 4.4
+\DeclareKeys[robotoslab] {
+  scale.store          = \@robotoslab@scale,
+  scale.initial:n      = 1,
+  weight.store         = \@robotoslab@weight,
+  weight.initial:n     = regular,
+  boldweight.store     = \@robotoslab@boldweight,
+  boldweight.initial:n = bold,
+}
+
+\ProcessKeyOptions[robotoslab]
+\RequirePackage{_style/Roboto/roboto-common}
+
+\defaultfontfeatures[RobotoSlab] {
+  Ligatures    = TeX,
+  Path         = _style/Roboto/,
+  Extension    = .ttf,
+  UprightFont  = RobotoSlab-VF,
+  BoldFont     = RobotoSlab-VF,
+  Scale        = \@robotoslab@scale,
+  BoldFeatures = {Instance=Bold},
+}
+
+\newfontfamily{\robotoslab}[
+  UprightFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoslab@weight},
+  }}},
+  BoldFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoslab@boldweight},
+  }}},
+]{RobotoSlab}

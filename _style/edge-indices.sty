@@ -1,0 +1,37 @@
+\newif\ifedgeindex
+\edgeindexfalse
+
+% add `\cleardoublepage' to make sure the empty pages have the correct chapter number
+\AddToHook{cmd/frontmatter/before}{\cleardoublepage}
+\AddToHook{cmd/frontmatter/after}{\edgeindexfalse}
+\AddToHook{cmd/mainmatter/before}{\cleardoublepage}
+\AddToHook{cmd/mainmatter/after}{\edgeindextrue}
+\AddToHook{cmd/appendix/before}{\cleardoublepage}
+\AddToHook{cmd/backmatter/before}{\cleardoublepage}
+\AddToHook{cmd/backmatter/after}{\edgeindexfalse}
+
+\newcommand{\edgeindexSize}{1} % size of jigsaw in cm
+\newcommand{\edgeindexYpos}{\dimeval{-2cm-1cm*\value{chapter}}} % size of jigsaw in cm
+\tikzset{edgeindex/.style={
+  rectangle,
+  rounded corners,
+  minimum width=25mm,
+  minimum height=8mm,
+  inner sep=0mm,
+  fill=black!67,
+  text=white,
+}}
+
+\NewDocumentCommand{\innerlap}{m}
+    {\ifodd\c@page\llap{#1}\else\rlap{#1}\fi}
+
+\newcommand{\printEdgeIndex}{%
+  \ifedgeindex\AddToHookNext{shipout/background}{%
+    % right side of odd pages 
+    \put(\ifodd\c@page\paperwidth\else0\fi, \edgeindexYpos)
+      {\tikz[overlay, scale=\edgeindexSize]{
+        \node[edgeindex] % right-aligned on odd pages
+          {\innerlap{\LARGE\hspace*{1em}\bfseries\thechapter\hspace*{1em}}};
+    }}}%
+  \fi
+}

@@ -1,0 +1,46 @@
+% one axis: weight
+% five weight instances for upright and italics
+
+% clsguide.pdf \S 4.4
+\DeclareKeys[robotomono] {
+  scale.store          = \@robotomono@scale,
+  scale.initial:n      = 1,
+  weight.store         = \@robotomono@weight,
+  weight.initial:n     = regular,
+  boldweight.store     = \@robotomono@boldweight,
+  boldweight.initial:n = bold,
+  width.store          = \@robotomono@width,
+  width.initial:n      = normal,
+}
+
+\ProcessKeyOptions[robotomono]
+\RequirePackage{_style/Roboto/roboto-common}
+
+\defaultfontfeatures[RobotoMono] {
+  Ligatures          = TeX,
+  Path               = _style/Roboto/,
+  Extension          = .ttf,
+  UprightFont        = RobotoMono-VF,
+  BoldFont           = RobotoMono-VF,
+  ItalicFont         = RobotoMono-VF-Italic,
+  BoldItalicFont     = RobotoMono-VF-Italic,
+  Scale              = \@robotomono@scale,
+  BoldFeatures       = {Instance=Bold},
+  BoldItalicFeatures = {Instance=Bold},
+}
+
+\newfontfamily{\robotomono}[
+  UprightFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotomono@weight},
+  }}},
+  BoldFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotomono@boldweight},
+  }}},
+  ItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotomono@weight},
+  }}},
+  BoldItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotomono@boldweight},
+  }}},
+]{RobotoMono}
+

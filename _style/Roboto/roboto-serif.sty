@@ -1,0 +1,55 @@
+% four axes: Width (wdth), Optical Size (opsz), Weight (wght), Gradeweight (GRAD)
+% nine weight instances for upright and italics
+
+% clsguide.pdf \S 4.4
+\DeclareKeys[robotoserif] {
+  monospaced.if        = @robotoserif@monospaced,
+  oldstyle.if          = @robotoserif@oldstyle,
+  scale.store          = \@robotoserif@scale,
+  scale.initial:n      = 1,
+  weight.store         = \@robotoserif@weight,
+  weight.initial:n     = regular,
+  boldweight.store     = \@robotoserif@boldweight,
+  boldweight.initial:n = bold,
+  width.store          = \@robotoserif@width,
+  width.initial:n      = normal,
+}
+
+\ProcessKeyOptions[robotoserif]
+\RequirePackage{_style/Roboto/roboto-common}
+
+\defaultfontfeatures[RobotoSerif] {
+  Ligatures          = TeX,
+  Path               = _style/Roboto/,
+  Extension          = .ttf,
+  UprightFont        = RobotoSerif-VF,
+  BoldFont           = RobotoSerif-VF,
+  ItalicFont         = RobotoSerif-VF-Italic,
+  BoldItalicFont     = RobotoSerif-VF-Italic,
+  Scale              = \@robotoserif@scale,
+  BoldFeatures       = {Instance=Bold},
+  BoldItalicFeatures = {Instance=Bold},
+  Numbers            = {
+    \if@robotoserif@monospaced Monospaced\else Proportional\fi,
+    \if@robotoserif@oldstyle OldStyle\else Lining\fi,
+  },
+}
+
+\newfontfamily{\robotoserif}[
+  UprightFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoserif@weight},
+    width=\width@axis{\@robotoserif@width},
+  }}},
+  BoldFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoserif@boldweight},
+    width=\width@axis{\@robotoserif@width},
+  }}},
+  ItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoserif@weight},
+    width=\width@axis{\@robotoserif@width},
+  }}},
+  BoldItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoserif@boldweight},
+    width=\width@axis{\@robotoserif@width},
+  }}},
+]{RobotoSerif}

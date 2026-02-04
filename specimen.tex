@@ -1,0 +1,94 @@
+% arara: lualatex: { options: ['-interaction=nonstopmode', '-file-line-error'] }
+
+% low-hanging fruit for 'accessible PDF'
+% https://www.latex-project.org/news/2024/07/08/tagging/
+% \DocumentMetadata{
+%   lang        = de,
+%   pdfversion  = 2.0,
+%   pdfstandard = ua-2,
+%   pdfstandard = a-4, %or a-4f
+%   testphase   = latest
+% }
+
+\documentclass[
+%  headingMathBold,
+  usearial
+]{_style/dissertation}
+
+% headingMathBold,
+% this option will make math in the bold headings bold as well.
+% This fits better with the text font, but if you use bold math with a meaning (e.g. vectors) this may be confusing. 
+% useArial,
+% use Arial as the sans-serif font, as per TUDelft corporate style.
+% the alternative is Roboto, which obviously goes together nicely with Roboto Slab.
+% use https://www.ctan.org/pkg/fourier instead of Roboto for a more classic look.
+% showBleed,
+% By default the thesis has bleed with crop marks in the `BleedBox' of the pdf, some migth find this confusing.
+% this option enlarges the `MediaBox' so that the bleed and crop marks are shown by default in the pdf viewer.
+% Ask your printing company what they need.
+
+
+% you can use this command to render one chapter only:
+% \includeonly{introduction/introduction}
+
+% words which latex does not know how to hyphenate can be listed here:
+\hyphenation{ge-for-der-te sus-pen-dier-ten mä-an-der-ung}
+% https://www.silbentrennung24.de
+% https://www.hyphenator.net
+
+%% Specify the title and author of the thesis. This information will be used on
+%% the title page (in title/title.tex) and in the metadata of the final PDF.
+\title[Optional Subtitle]{Title}
+\author{Albert}{Einstein}
+
+% only used for the 'title pages' for the chapters
+\RequirePackage{textpos}
+
+\begin{document}
+
+\chapter{Chapter}
+\maketitle
+
+\section{Section}
+\dropcap{L}{orem} ipsum
+$$E_\text{photon}=\frac{2 \uppi \uphbar \mathrm c_0}{\lambda }$$
+
+\subsection{Subsection}
+Lorem ipsum
+
+\subsubsection{Subsubsection}
+Lorem ipsum
+
+\paragraph{Subsubsection}
+Lorem ipsum
+
+\subparagraph{Subsubsection}
+Lorem ipsum
+
+
+ISO~\num{80000} defines that in mathematical typesetting, only variables should be italised. This means that constants (numbers, units, functions such as \(\mathrm J_0, \sin\) etc.) and other text should be upright.
+A more accessible source for these typesetting rules is the SI brochure. A few examples of correctly typeset math are shown below. The packages \texttt{siunitx} and \texttt{amsmath} (here loaded via \texttt{mathtools}) makes typesetting math correctly significantly easier.
+
+The rotational speed of the earth around the sun is approximately \(\varOmega_\text{earth} = 2 \uppi\,\si{rad.year^{-1}} \approx \SI{0.1991}{\micro\radian\per\second}\).\footnote{In \TeX, math mode is \emph{toggeled} using \texttt{\$...\$}, which is still what many people use. In \LaTeX, we can do this too, but we can also use a clear beginning and end of math mode, as \texttt{\textbackslash(...\textbackslash)}, which will make your code and possible error messages easier to understand.}
+
+The unnormalised sinc function is defined as follows:
+% in preamble: \DeclareMathOperator{\sinc}{sinc}
+\begin{equation}
+  \sinc x = \begin{cases}
+    0 & \text{where \(x = 0\)}\\
+    1 / \sin x & \text{else}
+  \end{cases}
+\end{equation}
+
+The following equation, commonly known as Euler's identity, consists of constants numbers only, and hence all symbols should be set upright:
+\begin{equation}
+  \mathrm e^{\mathrm i \uppi} + 1 = 0
+\end{equation}
+
+Here's a nice equation used as a demo by the \LaTeX\ font catalogue\footnote{\url{https://tug.org/FontCatalogue/}}
+\begin{equation}
+  \mathbfsf{B}(P)=\frac{\mu_0}{4\pi}\int\frac{\mathbfsf I \times \hat r ' }{r'^2} \mathrm dl
+    = \frac{\mu_0}{4\uppi}I\int\frac{\mathrm d\mathbfsf{l}\times\hat r'}{r'^2}
+\end{equation}
+
+\end{document}

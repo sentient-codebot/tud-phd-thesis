@@ -1,0 +1,52 @@
+\chapter{Nomenclature}
+
+This nomenclature uses the \mintinline{tex}!longtable! environment
+to create a table that can spread over multiple pages.
+Alternatively, Overleaf suggests using \texttt{nomencl}.%
+\footnote{\url{https://www.overleaf.com/learn/latex/Nomenclatures}}
+
+
+\section{Latin capitals}
+
+\begin{longtable}[l]{lll}
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endfirsthead
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endhead
+$G$ & \unit{\metre\cubed\per\kilogram\per\second\squared} & Gravitational constant\\
+$T$ & \unit{\kelvin} & Temperature\\
+\end{longtable}
+
+\section{Latin lower case}
+
+\begin{longtable}[l]{lll}
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endfirsthead
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endhead
+$\boldsymbol{g}$ & \unit{\metre\per\second\squared} & Gravitational acceleration\\
+$p$ & \unit{\pascal} & Pressure\\
+$t$ & \unit{\second} & Time\\
+$\boldsymbol{u}$ & \unit{\meter\per\second} & Velocity\\
+\end{longtable}
+
+\section{Greek upper case}
+
+\begin{longtable}[l]{lll}
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endfirsthead
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endhead
+$\varOmega$ & \unit{\radian\per\second} & Angular velocity\\
+\end{longtable}
+
+\section{Greek lower case}
+
+\begin{longtable}[l]{lll}
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endfirsthead
+\textbf{symbol} & \textbf{units} & \textbf{description}\\
+\endhead
+$\mu$ & \unit{\pascal\second} & Dynamic viscosity\\
+$\rho$ & \unit{\kilo\gram\per\metre\cubed} & Density\\
+\end{longtable}

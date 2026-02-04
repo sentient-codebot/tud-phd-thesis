@@ -1,0 +1,26 @@
+%% The native font is Utopia Regular with Fourier math. We use Latin Modern
+%% as a fallback, since Utopia lacks support for sans-serif and monospace.
+%\RequirePackage{lmodern}
+\ifluatex
+    \PassOptionsToPackage{warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
+    \RequirePackage{fourier-otf}
+\else
+    \RequirePackage{fourier}
+    % upright partial derivative, because it is an operator, not a variable
+    \DeclareMathSymbol{\uppartial}{\mathord}{otherletters}{130}
+    \let\partial\uppartial
+    \RequirePackage[Symbolsmallscale]{upgreek}
+    \DeclareSIPrefix{\micro}{\ensuremath{\upmu}}{-6}
+\fi
+
+%\usepackage[osf,scaled=.92]{heuristica}
+%\usepackage[varqu,varl]{inconsolata} % typewriter
+%\usepackage[type1,scaled=.95]{cabin} % sans serif like Gill Sans
+%\usepackage[utopia,vvarbb,bigdelims]{newtxmath}
+%
+
+% add a font for bold sans-serif italics in math
+\ifx\mathbfsf\undefined
+    \DeclareMathAlphabet{\mathbfsf}{\encodingdefault}{\sfdefault}{bx}{sl}
+\fi
+

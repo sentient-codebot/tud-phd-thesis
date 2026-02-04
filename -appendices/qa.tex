@@ -1,0 +1,56 @@
+\chapter{\LaTeX\ quality assurance}
+
+Before handing your work over to others, there are a few things you can do as a basic quality assurance (QA):
+\begin{itemize}
+  \item Check your output for missing references (indicated by a double question mark, you may use \verb|pdftotext| to automate this) or look at the blg and log files, where these will be indicated as well
+  \item Use a spelling checker
+  \begin{itemize}
+    \item Overleaf checks your spelling by default.
+    \item In \TeX{}studio you can set the spelling check at:\\
+      \TeX{}studio Options \(\to\) Configure \TeX{}studio\ldots \(\to\) Language Checking.
+    \item You can use Aspell (\url{http://aspell.net/}) to check the spelling in *.tex files from the command line.
+    \item If all else fails, you can open a tex file in MS Word and use their spelling and grammar checker
+  \end{itemize}
+  \item Check consistency of capitalisation in the table of contents
+  \item Consistency in bibliography
+  \begin{itemize}
+    \item Capitalisation of titles
+    \item Notation of author names
+    \item Abbreviation and spelling of journals
+    \item Some Dutch names are capitalized differently depending on wether they are preceded by initials or given names.\footnote{https://onzetaal.nl/taalloket/hoofdletters-namen-nederland}.
+      For this, you may use the biblatex command \verb|\autocap|. The same holds for Arabic names, but not, for instance Belgian or German.
+  \end{itemize}
+  \item Search through your code for words you have likely misspelled (or mix British and American spelling)
+  \begin{itemize}
+    \item In Windows: \verb"ls -R *.tex | sls 'teh'"
+    \item In Linux: \verb|grep -iR 'teh' *.tex|
+    \item In Apple: \verb|grep -i 'teh' **/*.tex|
+  \end{itemize}
+  \item You can also search for regular expressions (regex), e.g.:
+  \begin{itemize}
+    \item \verb|"\s[\"']\w"| (grep) or \verb|'\s[''"]\w'| (sls): A space, newline, etc. followed by closing single or double quotes, followed by a word character (e.g. a letter). Most likely, these should be replaced by opening quotes (` or ``).
+    \item \verb|"\b(\w+) \1\b"| repeated word
+    \item \verb|"\b[A-Z][A-Z]+[a-z]"| word starting with two capitals
+    \item In your *.bib files:
+    \begin{itemize}
+      \item \verb|"author\s*=.*\w\.\w"| initial without following space.
+      \item \verb|"author\s*=.*\b\w\s\w"| initial without following period.
+      \item \verb|"url\s*=.*doi"| DOI given as URL instead of DOI directly
+      \item \verb|"doi\s*=.*doi\.org"| DOI including `doi.org'
+      \item \verb|"[Uu]rl.*[^\\]#"| Forgot to escape \# in URL
+    \end{itemize}
+    \item Depending on your citation style:
+    \begin{itemize}
+      \item space before \verb|cite|
+      \item no space before \verb|cite|
+      \item parenthesis around \verb|cite|
+      \item no parenthesis around \verb|cite|
+      \item \ldots
+    \end{itemize}
+    \item \verb|grep -rnPiR "[^\x09\x0D\x20-\x7E\xBF-\xFF]" *.tex| (or\break\verb|*.bib| `weird' characters (that may look normal) probably caused by copying something from the a pdf file, which might cause \LaTeX\ to error.
+    \item When not using 'french spacing': patterns which likely confuse periods indicating an abbreviation with end of sentence and vice versa.
+  \end{itemize}
+  \item Check your output for missing references (indicated by a double question mark, you may use \verb|pdftotext| to automate this) or look at the log files, where these will be indicated as well
+  \item Chk\TeX\ (\url{https://www.ctan.org/pkg/chktex}) is written specifically to search for common errors in *.tex files
+  \item All of these suggestions work best when automated, for instance in a Makefile. Doing it by hand is way too boring, so you are very likely to forget running some of these tests on the final version of your thesis.
+\end{itemize}

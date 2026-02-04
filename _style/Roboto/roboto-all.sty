@@ -1,0 +1,73 @@
+% clsguide.pdf \S 4.4
+\DeclareKeys[robotoall] {
+  monospaced.if        = @robotoall@monospaced,
+  oldstyle.if          = @robotoall@oldstyle,
+  scale.store          = \@robotoall@scale,
+  scale.initial:n      = 1,
+  weight.store         = \@robotoall@weight,
+  weight.initial:n     = regular,
+  boldweight.store     = \@robotoall@boldweight,
+  boldweight.initial:n = bold,
+  width.store          = \@robotoall@width,
+  width.initial:n      = normal,
+  slant.store          = \@robotoall@slant,
+  slant.initial:n      = italic,
+}
+
+\ProcessKeyOptions[robotoall]
+
+\if@robotoall@monospaced
+  \PassOptionsToPackage{monospaced}{roboto-sans}
+  \PassOptionsToPackage{monospaced}{roboto-serif}
+  \PassOptionsToPackage{monospaced}{roboto-flex}
+\fi
+
+\if@robotoall@oldstyle
+  \PassOptionsToPackage{oldstyle}{roboto-sans}
+  \PassOptionsToPackage{oldstyle}{roboto-serif}
+\fi
+
+\PassOptionsToPackage{
+  scale=\@robotoall@scale,
+  weight=\@robotoall@weight,
+  boldweight=\@robotoall@boldweight,
+  width=\@robotoall@width,
+}{roboto-sans}
+
+\RequirePackage{_style/Roboto/roboto-sans}
+
+\PassOptionsToPackage{
+  scale=\@robotoall@scale,
+  weight=\@robotoall@weight,
+  boldweight=\@robotoall@boldweight,
+  width=\@robotoall@width,
+}{roboto-serif}
+	
+\RequirePackage{_style/Roboto/roboto-serif}
+
+\PassOptionsToPackage{
+  scale=\@robotoall@scale,
+  weight=\@robotoall@weight,
+  boldweight=\@robotoall@boldweight,
+  width=\@robotoall@width,
+}{roboto-mono}
+
+\RequirePackage{_style/Roboto/roboto-mono}
+
+\PassOptionsToPackage{
+  scale=\@robotoall@scale,
+  weight=\@robotoall@weight,
+  boldweight=\@robotoall@boldweight,
+}{roboto-slab}
+
+\RequirePackage{_style/Roboto/roboto-slab}
+
+\PassOptionsToPackage{
+  scale=\@robotoall@scale,
+  weight=\@robotoall@weight,
+  boldweight=\@robotoall@boldweight,
+  width=\@robotoall@width,
+  slant=\@robotoall@slant,
+}{roboto-flex}
+
+\RequirePackage{_style/Roboto/roboto-flex}

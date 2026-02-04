@@ -1,0 +1,45 @@
+\RequirePackage{fontspec}
+
+% https://tex.stackexchange.com/questions/7180/testing-for-number#answer-7183
+\newcommand\ifisnumTF[3]{%
+  \if!\ifnum9<1#1!\fi%
+    #2%
+  \else%
+    #3%
+  \fi}
+  
+\newcommand\@roboto@weight@thin@val{100}%
+\newcommand\@roboto@weight@extralight@val{200}%
+\newcommand\@roboto@weight@light@val{300}%
+\newcommand\@roboto@weight@regular@val{400}%
+\newcommand\@roboto@weight@medium@val{500}%
+\newcommand\@roboto@weight@semibold@val{600}%
+\newcommand\@roboto@weight@bold@val{700}%
+\newcommand\@roboto@weight@extrabold@val{800}%
+\newcommand\@roboto@weight@black@val{900}%
+
+\newcommand\weight@axis[1]{%
+  \ifisnumTF{#1}{#1}{%
+  \@nameuse{@roboto@weight@#1@val}}}
+
+\newcommand\@roboto@width@supercondensed@val{25}
+\newcommand\@roboto@width@ulta@val{50}
+\newcommand\@roboto@width@extra@val{62.5}
+\newcommand\@roboto@width@condensed@val{75}
+\newcommand\@roboto@width@semi@val{87.5}
+\newcommand\@roboto@width@normal@val{100}
+\newcommand\@roboto@width@semiexpanded@val{112.5}
+\newcommand\@roboto@width@expanded@val{125}
+\newcommand\@roboto@width@extraexpanded@val{150}
+
+\newcommand\width@axis[1]{%
+  \ifisnumTF{#1}{#1}{%
+  \@nameuse{@roboto@width@#1@val}}}
+
+\newcommand\@roboto@slant@upright@val{0}
+\newcommand\@roboto@slant@italic@val{-10}
+
+\newcommand\slant@axis[1]{%
+  \ifisnumTF{#1}{#1}{%
+  \@nameuse{@roboto@slant@#1@val}}}
+

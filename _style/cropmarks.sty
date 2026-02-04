@@ -1,0 +1,50 @@
+% https://www.printerpro.nl/aanleverspecificaties/#boeken-hardcover
+% https://tex.stackexchange.com/questions/433175/how-to-set-trim-box-in-xetex
+% https://www.prepressure.com/pdf/basics/page-boxes
+% https://tex.stackexchange.com/questions/248902/how-to-use-macro-inside-pdfpageattr
+
+% mediabox: default?
+% bleedbox: physical paper size before cutting
+% cropbox: pdf viewer
+% trimbox: physical paper size after cutting
+
+\AddToHook{shipout/background}{\cropmarks}
+
+
+\NewDocumentCommand{\addbleed}{O{2mm}}{
+  \edef\mypdfpageattr{
+    /MediaBox [
+      \fpeval{-#1 / 1bp}
+      \fpeval{-#1 / 1bp}
+      \fpeval{(\the\paperwidth + #1) / 1bp}
+      \fpeval{(\the\paperheight + #1) / 1bp}
+    ]
+    /BleedBox [
+      \fpeval{-#1 / 1bp}
+      \fpeval{-#1 / 1bp}
+      \fpeval{(\the\paperwidth + #1) / 1bp}
+      \fpeval{(\the\paperheight + #1) / 1bp}
+    ]
+  }
+  \expandafter\pdfpageattr\expandafter{\mypdfpageattr}
+  \def\cropmarks{
+    \put(\dimeval{-#1/2}, 0)
+      {\line(-1, 0){#1}}%
+    \put(\dimeval{-#1/2}, -\paperheight)
+      {\line(-1, 0){#1}}%
+    \put(\dimeval{\paperwidth + #1/2}, 0)
+      {\line(1, 0){#1}}%
+    \put(\dimeval{\paperwidth + #1/2}, -\paperheight)
+      {\line(1, 0){#1}}%
+    \put(0, \dimeval{#1/2})
+      {\line(0, 1){#1}}%
+    \put(\paperwidth, \dimeval{#1/2})
+      {\line(0, 1){#1}}%
+    \put(0, \dimeval{-\the\paperheight - #1/2})
+      {\line(0, -1){#1}}%
+    \put(\paperwidth, \dimeval{-\the\paperheight - #1/2})
+      {\line(0, -1){#1}}%
+  }
+}
+
+\addbleed

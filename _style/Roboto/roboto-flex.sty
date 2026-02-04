@@ -1,0 +1,57 @@
+% one axis: weight
+% five weight instances for upright and italics
+
+% clsguide.pdf \S 4.4
+\DeclareKeys[robotoflex] {
+  monospaced.if        = @robotoflex@monospaced,
+  scale.store          = \@robotoflex@scale,
+  scale.initial:n      = 1,
+  weight.store         = \@robotoflex@weight,
+  weight.initial:n     = regular,
+  boldweight.store     = \@robotoflex@boldweight,
+  boldweight.initial:n = bold,
+  width.store          = \@robotoflex@width,
+  width.initial:n      = normal,
+  slant.store          = \@robotoflex@slant,
+  slant.initial:n      = italic,
+}
+
+\ProcessKeyOptions[robotoflex]
+\RequirePackage{_style/Roboto/roboto-common}
+
+\defaultfontfeatures[RobotoFlex] {
+  Ligatures          = TeX,
+  Path               = _style/Roboto/,
+  Extension          = .ttf,
+  UprightFont        = RobotoFlex-VF,
+  BoldFont           = RobotoFlex-VF,
+  ItalicFont         = RobotoFlex-VF,
+  BoldItalicFont     = RobotoFlex-VF,
+  Scale              = \@robotoflex@scale,
+  BoldFeatures       = {Instance=Bold},
+  ItalicFeatures     = {Instance=Italic},
+  BoldItalicFeatures = {Instance=BoldItalic},
+  Numbers            =
+    {\if@robotoflex@monospaced Monospaced\else Proportional\fi},
+}
+
+\newfontfamily{\robotoflex}[
+  UprightFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoflex@weight},
+    width=\width@axis{\@robotoflex@width},
+  }}},
+  BoldFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoflex@boldweight},
+    width=\width@axis{\@robotoflex@width},
+  }}},
+  ItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoflex@weight},
+    width=\width@axis{\@robotoflex@width},
+    slant=\slant@axis{\@robotoflex@slant},
+  }}},
+  BoldItalicFeatures = {RawFeature={+axis={
+    weight=\weight@axis{\@robotoflex@boldweight},
+    width=\width@axis{\@robotoflex@width},
+    slant=\slant@axis{\@robotoflex@slant},
+  }}},
+]{RobotoFlex}

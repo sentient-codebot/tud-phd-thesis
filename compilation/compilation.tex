@@ -1,0 +1,112 @@
+\chapter{Ways to compile this thesis}
+
+# TU Delft Style Dissertation template
+
+## Using the template
+
+This is the TU Delft dissertation template for LaTeX. The source files can be found [here](https://gitlab.com/novanext/tudelft-dissertation). It is designed to work with all versions of LaTeX, but if you want to adhere to the TU Delft house style, you need to use XeLaTeX, as it supports TrueType and OpenType fonts. The document can be compiled with:
+
+```shell
+xelatex dissertation
+biber dissertation
+xelatex dissertation
+xelatex propositions
+```
+
+Whether or not you need all these steps depends on which files have changed since you last compiled the document. To skip the steps you do not need, and render the propositions as well, you can:
+
+```shell
+make xelatex_roboto
+```
+
+You can also use pdflatex instead of xelatex (faster but less fancy font support) of use the font 'Fourier' instead of 'Roboto'. Fourier has a more classic look, while the moderner look of Roboto fits the TU Delft style guide. Use any of:
+
+```shell
+make pdflatex_roboto
+make xelatex_fourier
+make pdflatex_fourier
+```
+
+## Installation the TeX ecosystem
+
+in Windows and Linux, you can use [TeX Live](https://www.tug.org/texlive/quickinstall.html) to render the thesis. On macOS, use [MacTeX](https://www.tug.org/mactex/).
+
+You can either choose a full installation (which will take a long time, and cost a lot of hard disk space) or choose a small installation and add the following *collections*:
+
+```shell
+tlmgr install collection-basic collection-bibtexextra collection-fontsextra collection-fontsrecommended collection-langenglish collection-langeuropean collection-langgreek collection-latex collection-latexextra collection-latexrecommended collection-mathscience collection-xetex
+```
+
+In (Debian-style) Linux, this can be done using the system package manager:
+
+```shell
+apt-get install -y texlive-basic texlive-bibtex-extra texlive-fonts-extra texlive-luatex texlive-science texlive-xetex cm-super texlive-math-extra texlive-lang-dutch
+texlive-lang-english texlive-latex-extra
+```
+
+
+
+
+\section{Editor}
+
+\subsection{texstudio}
+
+\url{https://www.texstudio.org/}
+
+magic comment
+e.g. 
+
+\begin{minted}
+% !TeX encoding = UTF-8
+% !TeX document-id = {7b3c491c-ec56-40a8-8d61-8dbea3e3b933}
+% !TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
+\end{minted}
+
+\item[ms vs code] \url{https://code.visualstudio.com/}
+
+\begin{minted}
+{
+    "version": "0.1.0",
+    "command": "pdflatex",
+    "isShellCommand": true,
+    "args": [
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "dissertation.tex"
+    ],
+    "showOutput": "silent",
+    "problemMatcher": {
+        "owner": "latex-preview",
+        "fileLocation": [
+            "relative",
+            "${workspaceRoot}"
+        ],
+        "pattern": {
+            "regexp": "^(.*):(\\d+):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "message": 3
+        }
+    }
+}
+\end{minted}
+
+\end{description}
+
+\section{Renderer}
+
+\begin{description}
+\item pdflatex
+\item xetex
+\item lualatex
+\end{description}
+
+\section{Automation}
+
+\begin{description}
+\item{make}
+\item[mklatex]
+\item[build]
+\end{description}
+
+

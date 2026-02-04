@@ -1,0 +1,25 @@
+\ExplSyntaxOn
+% This style allows for page-filling graphics to be used as chapter openeners
+% https://latexref.xyz/_005cparbox.html
+
+\NewDocumentCommand{\LeftOpener}
+  {O{0,0-\paperheight}m}{
+  \AddToHookNext{cmd/chapter/before}{
+    \cleardoubleevenpage
+    \AddToHookNext{shipout/background}{
+      \put(#1) {#2}
+    }
+  }
+}
+
+\NewDocumentCommand{\RightOpener}
+  {O{0,0-\paperheight}m}{
+  \AddToHookNext{cmd/chapter/before}{
+    \cleardoublepage
+    \AddToHookNext{shipout/background}{
+      \put(#1) {#2}
+    }
+  }
+}
+
+\ExplSyntaxOff

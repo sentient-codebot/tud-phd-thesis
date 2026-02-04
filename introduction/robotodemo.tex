@@ -1,0 +1,105 @@
+\section{Roboto}
+\roboto
+
+\dropcap T{he} TU Delft style prescribes Roboto Slab together with Arial.%
+\footnote{\url{https://www.tudelft.nl/huisstijl/bouwstenen/typografie}}
+You are free to either use Arial (\TeX\ Gyre Heros\footnote{\url{https://ctan.org/pkg/tex-gyre-heros}} when using Pdf\LaTeX) using the class option \texttt{usearial}; else regular Roboto is instead.\footnote{Some significant differences between these otherwise very similar fonts are shown here: \url{http://www.identifont.com/differences?first=Arial&second=Roboto}}
+Not surprisingly, this also looks great together with Roboto Slab.
+In any case, this section is typeset using Roboto.
+
+Roboto (Sans) has a dual nature. It has a mechanical skeleton
+and the forms are largely geometric. At the same time,
+the font features friendly and open curves. While some
+grotesks distort their letterforms to force a rigid
+rhythm, Roboto doesn't compromise, allowing letters to be
+settled into their natural width. This makes for a more
+natural reading rhythm more commonly found in humanist and
+serif types.
+
+Roboto Serif is designed to create a comfortable
+and frictionless reading experience. Minimal and
+highly functional, it is useful anywhere (even for app
+interfaces) due to the extensive set of weights and widths
+across a broad range of optical sizes. While it was
+carefully crafted to work well in digital media, across
+the full scope of sizes and resolutions we have today, it
+is just as comfortable to read and work in print media.
+
+Roboto has several styles of digits:
+\begin{itemize}
+  \itemsep 0pt
+  \parskip 0pt
+  \item `Normal' lining numbers
+  \begin{itemize}
+    \ifluatex
+      \item Proportional: 1234567890
+      \item Tabular: {%  
+        \fontspec[Numbers=Monospaced]{Roboto}%
+        1234567890%
+      }
+    \else
+      \item Proportional: \robotoLF{1234567890}
+      \item Tabular: \robotoTLF{1234567890}
+    \fi
+  \end{itemize}
+  \item Old-style numbers
+  \begin{itemize}
+    \ifluatex
+      \item Proportional: {%
+        \fontspec[Numbers=OldStyle]{Roboto}%
+        1234567890%
+      }
+      \item Tabular: {%
+        \fontspec[Numbers={OldStyle,Monospaced}]{Roboto}%
+        1234567890%
+      }
+    \else
+      \item Proportional: \robotoOsF{1234567890}
+      \item Tabular: \robotoTOsF{1234567890}
+    \fi
+  \end{itemize}
+\end{itemize}
+
+Furthermore, the font is available in many different weights:
+\begin{itemize}
+    \itemsep 0pt
+    \parskip 0pt
+    \ifluatex
+        \item \fontspec[Instance=Thin]{Roboto} Thin
+        \item \fontspec[Instance=Extralight]{Roboto} Extralight
+        \item \fontspec[Instance=Light]{Roboto} Light
+        \item \fontspec[Instance=Regular]{Roboto} Regular
+        \item \fontspec[Instance=Medium]{Roboto} Medium
+        \item \fontspec[Instance=Semibold]{Roboto} Semibold
+        \item \fontspec[Instance=Bold]{Roboto} Bold
+        \item \fontspec[Instance=Extrabold]{Roboto} Extrabold
+        \item \fontspec[Instance=Black]{Roboto} Black
+    \else
+        \item \thinseries Roboto Thin
+        \item \lightseries Roboto Light
+        \item \mdseries Roboto Regular
+        \item \mediumseries Roboto Medium
+        \item \bfseries Roboto Bold
+        \item \blackseries Roboto Black
+    \fi
+\end{itemize}
+
+\ifluatex
+{\robotoflex
+Finally, RobotoFlex is a variable font with many `axes' for customisation, allowing for very
+{\addfontfeatures{
+  Renderer=Harfbuzz,
+  Scale=1.2, % inverse of relative x height
+  RawAxis={
+    width=25,
+    weight=400,
+    XOPQ=175, % thick stroke
+    YOPQ=25, % thin stroke
+    YTLC=428, % lower case hight; 514 default
+    YTDE=-300, % descender depth
+    YTAS=800, % ascender height
+  }}
+  Fancy
+} variation.
+}
+\fi

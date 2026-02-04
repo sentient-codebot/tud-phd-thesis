@@ -1,0 +1,61 @@
+\chapter{Plotting}
+
+The appearance of plots in Matplotlib can be customised by using style
+sheets: \url{https://tonysyu.github.io/raw_content/matplotlib-style-gallery/gallery.html}
+
+\begin{figure}
+\begin{centering}
+\makeatletter
+\if@fourier
+\includegraphics{../_python/plt-artists_Utopia.pdf}
+\else
+\if@usearial\includegraphics{_python/plt-artists_Arial}\else
+\includegraphics{../_python/plt-artists_Roboto.pdf}
+\fi
+\fi
+\makeatother
+\par\end{centering}
+\caption{Artist demo.}
+\end{figure}
+
+\begin{figure}
+\begin{centering}
+\makeatletter
+\if@fourier
+\includegraphics{../_python/plt-bar-distribution_Utopia.pdf}
+\else
+\if@usearial\includegraphics{_python/plt-bar-distribution_Arial}\else
+\includegraphics{../_python/plt-bar-distribution_Roboto.pdf}
+\fi
+\fi
+\makeatother
+\par\end{centering}
+\caption{Histogram in the upper pane; Bar chart in the lower pane.}
+\end{figure}
+
+\begin{figure}
+\begin{centering}
+\makeatletter
+\if@fourier
+\includegraphics{../_python/plt-streamplot_Utopia.pdf}
+\else
+\if@usearial\includegraphics{_python/plt-streamplot_Arial}\else
+\includegraphics{../_python/plt-streamplot_Roboto.pdf}
+\fi
+\fi
+\makeatother
+\par\end{centering}
+\caption{Example of a stream plot overlaying a pseudocolor plot.}
+\end{figure}
+
+As mentioned by wikipedia\footnote{\url{https://en.wikipedia.org/wiki/Utopia_(typeface)}},
+Utopia can be downloaded in {*}.otf, {*}.ttf and other formats for
+free:
+\begin{itemize}
+\item \url{https://ghostscript.com/~tor/stuff/fonts/utopia/} or
+\item \url{https://code.google.com/archive/p/evristika/}.
+\end{itemize}
+These fonts can be read directly by matplotlib, but cannot be used
+in mathtext. The font Stix blends in decently, but better (though
+slower) is using latex to typeset math in matplotlib. Comments in
+the matplotlib style file show how this could be done.

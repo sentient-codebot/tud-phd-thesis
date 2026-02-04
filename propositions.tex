@@ -1,0 +1,89 @@
+% arara: lualatex
+\documentclass[usearial]{_style/dissertation}
+
+%% Turn off page numbering for the propositions and make the margins on both
+%% sides equal and symmetrical.
+\geometry{twoside=false}
+\pagestyle{empty}
+
+%% Specify the title and author of the thesis. This information will be used on
+%% both the English and Dutch side and in the metadata of the final PDF.
+\title[Optional Subtitle]{Title}
+\author{Albert}{Einstein}
+
+\begin{document}
+% Title
+\begin{center}
+
+    {\Huge\titlefont\bfseries Propositions}
+
+    \bigskip
+
+    accompanying the dissertation
+
+    \bigskip
+
+    %% Print the title.
+    {\makeatletter
+        \color{title}
+        \titlestyle\bfseries\huge\@title
+        \makeatother}
+
+    %% Print the optional subtitle.
+    {\makeatletter
+        \color{title}
+        \ifx\@subtitle\undefined\else
+            \large\titlefont\titleshape\@subtitle
+        \fi
+        \makeatother}
+
+    \bigskip
+
+    by
+
+    \bigskip
+
+    %% Print the full name of the author.
+    \makeatletter
+    {\large\titlefont\bfseries\@firstnames\ \MakeUppercase{\titleshape\@lastname}}
+    \makeatother
+
+\end{center}
+
+\bigskip
+\bigskip
+
+\begin{enumerate}
+
+\item If you can't explain it to a six year old, you don't understand it yourself.
+
+\item Anyone who has never made a mistake has never tried anything new.
+
+\item Never memorize something that you can look up.
+
+\item A clever person solves a problem. A wise person avoids it.
+
+\item Reality is merely an illusion, albeit a very persistent one.
+
+\item The world is in greater peril from those who tolerate or encourage evil than from those who actually commit it
+
+\item Concern for man and his fate must always form the chief interest of all technical endeavors.
+
+\item Science can flourish only in an atmosphere of free speech.
+
+\item Once you can accept the universe as matter expanding into nothing that is something, wearing stripes with plaid comes easy.
+
+\item Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.
+
+\end{enumerate}
+
+\vfill
+
+%% Apart from the name and title of the supervisor, the following text is
+%% dictated by the promotieregelement.
+\begin{center}
+These propositions are regarded as opposable and defendable, and have been approved as such by the promotor prof.\ dr.\ A.\ Kleiner.
+\end{center}
+
+\end{document}
+

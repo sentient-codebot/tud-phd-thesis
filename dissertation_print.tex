@@ -1,0 +1,15 @@
+% arara: lualatex
+% arara: biber
+
+% do not work for obscure reasons:
+% \PassOptionsToClass{print}{_style/dissertation}
+% \PassOptionsToClass{print}{dissertation}
+
+\documentclass[
+  print,
+  usearial
+]{_style/dissertation}
+% not-so-subtle way to ignore `\documentclass' in dissertation.tex
+\renewcommand{\documentclass}[2][]{}
+
+\input{dissertation.tex}
